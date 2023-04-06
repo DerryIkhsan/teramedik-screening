@@ -68,17 +68,40 @@ class _TesPageState extends State<TesPage> {
           children: [
             Expanded(
               child: Container(
-                margin: EdgeInsets.all(20),
+                margin: EdgeInsets.all(10),
                 child: GridView.count(
                   crossAxisCount: 2,
                   children: data
                       .map((e) => Container(
-                            margin: EdgeInsets.all(20),
-                            color: Colors.blue,
+                            margin: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.grey,
+                            ),
                             child: Column(
                               children: [
-                                Text('${e['nama']}'),
-                                Text('${e['lokasi']}'),
+                                Container(
+                                  height: 130,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(10),
+                                      topRight: Radius.circular(10),
+                                    ),
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                                Container(
+                                  width: double.infinity,
+                                  margin: EdgeInsets.only(top: 20, left: 20),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text('${e['nama']}'),
+                                      Text('${e['lokasi']}'),
+                                    ],
+                                  ),
+                                ),
                               ],
                             ),
                           ))
