@@ -75,8 +75,8 @@ class _TesPageState extends State<TesPage> {
                       .map((e) => Container(
                             margin: EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.grey,
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.black12,
                             ),
                             child: Column(
                               children: [
@@ -84,8 +84,8 @@ class _TesPageState extends State<TesPage> {
                                   height: 130,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(10),
-                                      topRight: Radius.circular(10),
+                                      topLeft: Radius.circular(8),
+                                      topRight: Radius.circular(8),
                                     ),
                                     color: Colors.blue,
                                   ),
@@ -97,7 +97,10 @@ class _TesPageState extends State<TesPage> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text('${e['nama']}'),
+                                      Text('${e['nama']}', style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                      ),),
                                       Text('${e['lokasi']}'),
                                     ],
                                   ),
