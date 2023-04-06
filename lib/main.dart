@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:teramedik/detail_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -121,7 +122,7 @@ class ListViewRS extends StatelessWidget {
                           Text(
                             '${e['nama']}',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 20.sp,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
@@ -189,7 +190,7 @@ class GridViewRS extends StatelessWidget {
                               Text(
                                 '${e['nama']}',
                                 style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 16.sp,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -215,7 +216,8 @@ class MyApp extends StatelessWidget {
     return Sizer(builder: (context, orientation, deviceType) {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: TesPage(),
+        // home: TesPage(),
+        home: DetailScreen(),
       );
     });
   }
