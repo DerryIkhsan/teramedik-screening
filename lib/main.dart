@@ -64,23 +64,43 @@ class _TesPageState extends State<TesPage> {
             SizedBox(width: 20),
           ],
         ),
-        body: Container(
-          margin: EdgeInsets.all(20),
-          child: GridView.count(
-            crossAxisCount: 2,
-            children: data
-                .map((e) => Container(
-                      margin: EdgeInsets.all(20),
-                      color: Colors.blue,
-                      child: Column(
-                        children: [
-                          Text('${e['nama']}'),
-                          Text('${e['lokasi']}'),
-                        ],
-                      ),
-                    ))
-                .toList(),
-          ),
+        body: Column(
+          children: [
+            Expanded(
+              child: Container(
+                margin: EdgeInsets.all(20),
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  children: data
+                      .map((e) => Container(
+                            margin: EdgeInsets.all(20),
+                            color: Colors.blue,
+                            child: Column(
+                              children: [
+                                Text('${e['nama']}'),
+                                Text('${e['lokasi']}'),
+                              ],
+                            ),
+                          ))
+                      .toList(),
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 20, right: 20),
+              width: double.infinity,
+              height: 50,
+              color: Colors.blue,
+              child: Text(
+                'Ver. 1.2.1',
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.right,
+              ),
+            )
+          ],
         ),
       ),
     );
