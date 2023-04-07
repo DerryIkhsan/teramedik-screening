@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:teramedik/detail_screen.dart';
+import 'package:teramedik/splash_screen.dart';
 import 'theme.dart';
 
 void main() {
@@ -474,8 +475,9 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.green,
         ),
         debugShowCheckedModeBanner: false,
-        home: TesPage(),
+        // home: TesPage(),
         // home: DetailScreen(),
+        home: SplashScreen(),
       );
     });
   }

@@ -29,6 +29,7 @@ class _DetailScreenState extends State<DetailScreen> {
 
     return SafeArea(
       child: Scaffold(
+        backgroundColor: colorGrey,
         body: Column(
           children: [
             Container(
