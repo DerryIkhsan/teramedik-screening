@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:teramedik/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -31,26 +32,46 @@ class _DetailScreenState extends State<DetailScreen> {
         body: Column(
           children: [
             Container(
-              height: bodyHeight * 0.3, // 30% device body
+              height: bodyHeight * 0.4, // 40% device body
               width: double.infinity,
-              color: Colors.blue,
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: 20,
-                    left: 20,
-                    child: Icon(
-                      Icons.arrow_back,
-                      size: 30,
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                image: DecorationImage(
+                  image: AssetImage('assets/images/hospital5.jpg'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: 20,
+                      left: 20,
+                      child: Container(
+                        width: 70,
+                        padding: EdgeInsets.all(7),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          color: colorGreen.withOpacity(.7),
+                        ),
+                        child: Icon(
+                          Icons.arrow_back,
+                          size: 30,
+                          color: colorWhite,
+                        ),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             Container(
               height: bodyHeight * 0.1, // 10% device body
               width: double.infinity,
-              color: Colors.black12,
+              color: colorGreen,
               child: Container(
                 margin: EdgeInsets.all(20),
                 child: Row(
@@ -63,6 +84,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         Text(
                           'Rumah Sakit Medika 1',
                           style: TextStyle(
+                            color: colorWhite,
                             fontSize: 20,
                             fontWeight: FontWeight.w700,
                           ),
@@ -70,29 +92,21 @@ class _DetailScreenState extends State<DetailScreen> {
                         SizedBox(height: 10),
                         Text(
                           'Bandung',
-                          style: TextStyle(fontSize: 16),
+                          style: TextStyle(
+                            color: colorWhite,
+                            fontSize: 16,
+                          ),
                         ),
                       ],
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                        color: Colors.white,
-                      ),
-                      child: Icon(
-                        Icons.arrow_forward,
-                        size: 30,
-                      ),
                     ),
                   ],
                 ),
               ),
             ),
             Container(
-              height: bodyHeight * 0.60, // 60% device body
+              height: bodyHeight * 0.5, // 50% device body
               width: double.infinity,
-              color: Colors.amber,
+              color: colorGrey,
               child: SingleChildScrollView(
                 child: Column(
                   children: [
@@ -112,10 +126,14 @@ class _DetailScreenState extends State<DetailScreen> {
                               height: 70,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16),
-                                color: Colors.brown,
+                                color: colorGreen,
                               ),
                               child: Center(
-                                child: Icon(Icons.phone, size: 30),
+                                child: Icon(
+                                  Icons.phone,
+                                  size: 30,
+                                  color: colorWhite,
+                                ),
                               ),
                             ),
                           ),
@@ -128,10 +146,14 @@ class _DetailScreenState extends State<DetailScreen> {
                               height: 70,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16),
-                                color: Colors.brown,
+                                color: colorGreen,
                               ),
                               child: Center(
-                                child: Icon(Icons.pin_drop, size: 30),
+                                child: Icon(
+                                  Icons.pin_drop,
+                                  size: 30,
+                                  color: colorWhite,
+                                ),
                               ),
                             ),
                           ),
@@ -146,10 +168,14 @@ class _DetailScreenState extends State<DetailScreen> {
                               height: 70,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16),
-                                color: Colors.brown,
+                                color: colorGreen,
                               ),
                               child: Center(
-                                child: Icon(Icons.mail, size: 30),
+                                child: Icon(
+                                  Icons.mail,
+                                  size: 30,
+                                  color: colorWhite,
+                                ),
                               ),
                             ),
                           ),
@@ -164,6 +190,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       child: Text(
                         'Rumah Sakit Medika 1',
                         style: TextStyle(
+                          color: colorDark,
                           fontSize: 26,
                           fontWeight: FontWeight.w600,
                         ),
@@ -172,7 +199,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     // end title
 
                     SizedBox(
-                      height: 30,
+                      height: 20,
                     ),
 
                     // description
@@ -181,7 +208,11 @@ class _DetailScreenState extends State<DetailScreen> {
                       child: Text(
                         'RS. Medika Dramaga yang berkedudukan di Kota Bogor, yang anggaran dasarnya tertuang dalam Akta Pendirian dengan Akta Notaris, tertanggal 1 Oktober 2010 Nomor 3 Peletakan batu pertama pembangunan RS. Medika Dramaga (RSMD) pada tanggal 11 Agustus 2011. Pada tanggal 10 November 2012 adalah awal dari Operasional RS. Medika Dramaga, yang kemudian menjadi HARI ULANG TAHUN RSMD.',
                         style: TextStyle(
-                            fontSize: 16, wordSpacing: 2, letterSpacing: 1),
+                          color: colorDark,
+                          fontSize: 16,
+                          wordSpacing: 1,
+                          letterSpacing: .5,
+                        ),
                         textAlign: TextAlign.left,
                       ),
                     ),
