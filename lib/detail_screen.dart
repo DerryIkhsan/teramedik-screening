@@ -37,7 +37,7 @@ class _DetailScreenState extends State<DetailScreen> {
               decoration: BoxDecoration(
                 color: Colors.blue,
                 image: DecorationImage(
-                  image: AssetImage('assets/images/hospital5.jpg'),
+                  image: NetworkImage('https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -112,7 +112,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   children: [
                     // start icon
                     Container(
-                      margin: EdgeInsets.all(50),
+                      margin: EdgeInsets.all(30),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

@@ -191,23 +191,28 @@ class _TesPageState extends State<TesPage> {
                 ],
               ),
             ),
-
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20),
               width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Hello, Admin',
+                  Text(
+                    'Hello, Admin',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                       color: colorDark.withOpacity(.7),
                     ),
                   ),
-                  SizedBox(height: 5,),
-                  Text('Rumah Sakit Terbaik',
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    'Daftar Rumah Sakit Terbaik',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w700,
@@ -217,9 +222,9 @@ class _TesPageState extends State<TesPage> {
                 ],
               ),
             ),
-
-            SizedBox(height: 10,),
-
+            SizedBox(
+              height: 10,
+            ),
             isGridView ? GridViewRS(data: data) : ListViewRS(data: data),
             Container(
               margin: EdgeInsets.only(top: 10, right: 20),
@@ -285,6 +290,14 @@ class ListViewRS extends StatelessWidget {
                             image: NetworkImage('${e['image']}'),
                             fit: BoxFit.cover,
                           ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black26,
+                              blurRadius: 3,
+                              spreadRadius: 2,
+                              offset: Offset(0, 5),
+                            ),
+                          ],
                         ),
                       ),
                       Container(
@@ -391,6 +404,14 @@ class GridViewRS extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: colorGreen,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 3,
+                            spreadRadius: 2,
+                            offset: Offset(0, 2),
+                          ),
+                        ],
                       ),
                       child: Column(
                         children: [
@@ -449,6 +470,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Sizer(builder: (context, orientation, deviceType) {
       return MaterialApp(
+        theme: ThemeData(
+          primarySwatch: Colors.green,
+        ),
         debugShowCheckedModeBanner: false,
         home: TesPage(),
         // home: DetailScreen(),
