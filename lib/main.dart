@@ -10,14 +10,14 @@ void main() {
   runApp(MyApp());
 }
 
-class TesPage extends StatefulWidget {
-  TesPage({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<TesPage> createState() => _TesPageState();
+  State<HomeScreen> createState() => _HomeScreen();
 }
 
-class _TesPageState extends State<TesPage> {
+class _HomeScreen extends State<HomeScreen> {
   bool isGridView = true;
 
   List<Map<String, String>> data = [
@@ -477,7 +477,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.green,
         ),
         debugShowCheckedModeBanner: false,
-        // home: TesPage(),
+        // home: HomeScreen(),
         // home: DetailScreen(),
         home: SplashScreen(),
         // home: NoConnectionScreen(),

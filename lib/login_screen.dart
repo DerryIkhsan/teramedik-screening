@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teramedik/main.dart';
 import 'package:teramedik/theme.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -27,16 +28,6 @@ class LoginScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        // Container(
-                        //   height: 40,
-                        //   width: 40,
-                        //   decoration: BoxDecoration(
-                        //     image: DecorationImage(
-                        //       image: AssetImage('assets/images/healthcare.png'),
-                        //       fit: BoxFit.contain,
-                        //     ),
-                        //   ),
-                        // ),
 
                         SizedBox(width: 10),
 
@@ -96,7 +87,7 @@ class LoginScreen extends StatelessWidget {
                         minimumSize: Size(double.infinity, 50),
                       ),
                       onPressed: () {
-                        
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
                       },
                       child: Text(
                         'Login',
