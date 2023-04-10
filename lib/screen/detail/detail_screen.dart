@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:teramedik/models/rumahsakit.dart';
 import 'package:teramedik/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -11,6 +12,7 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
+
   void launchMap(String address) async {
     String query = Uri.encodeComponent(address);
     Uri googleUrl =
@@ -19,6 +21,15 @@ class _DetailScreenState extends State<DetailScreen> {
     if (await canLaunchUrl(googleUrl)) {
       await launchUrl(googleUrl);
     }
+  }
+
+
+
+  @override
+  void initState() {
+
+    // TODO: implement initState
+    super.initState();
   }
 
   @override
