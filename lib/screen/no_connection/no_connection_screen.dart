@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:teramedik/splash_screen.dart';
 import 'package:teramedik/theme.dart';
+
+import '../splash/splash_screen.dart';
 
 class NoConnectionScreen extends StatelessWidget {
   const NoConnectionScreen({Key? key}) : super(key: key);

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:teramedik/main.dart';
 import 'package:teramedik/theme.dart';
+
+import '../home/home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);

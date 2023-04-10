@@ -32,6 +32,7 @@ class _DetailScreenState extends State<DetailScreen> {
         backgroundColor: colorGrey,
         body: Column(
           children: [
+            // Background Image
             Container(
               height: bodyHeight * 0.4, // 40% device body
               width: double.infinity,
