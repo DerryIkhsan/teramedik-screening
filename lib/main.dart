@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sizer/sizer.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teramedik/bloc/rumahsakit_bloc.dart';
 import 'screen/splash/splash_screen.dart';
-import 'theme.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,14 +12,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Sizer(builder: (context, orientation, deviceType) {
-      return MaterialApp(
+    return BlocProvider(
+      create: (context) => RumahSakitBloc(),
+      child: MaterialApp(
         theme: ThemeData(
           primarySwatch: Colors.green,
         ),
         debugShowCheckedModeBanner: false,
         home: SplashScreen(),
-      );
-    });
+      ),
+    );
   }
 }
