@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
+import 'package:teramedik/models/rumahsakitdetail.dart';
 
 import '../models/rumahsakit.dart';
 
@@ -29,28 +30,16 @@ class RumahSakitBloc extends Bloc<RumahSakitEvent, RumahSakitState> {
 
         var result = jsonDecode(response.body);
         emit(RumahSakitSuccess(rumahSakit: rumahSakitFromJson(json.encode(result['data']))));
-
-        // print(result['data']);
-        print(uri);
-        print(event);
       }
-      
+      else if(event is GetDetailRumahSakitEvent){
+        String id = event.id.toString();
+        String uri  = 'http://192.168.166.39:8000/api/rumahsakit/${id}';
 
-      
+        final response = await http.get(Uri.parse(uri));
+
+        var result = jsonDecode(response.body);
+        emit(RumahSakitDetailSuccess(rumahSakitDetail: RumahSakitDetail.fromJson(result)));
+      }
     });
-  // RumahSakitBloc() : super(RumahSakitInitial()){
-  //   on<RumahSakitEvent>((event, emit) async {
-  //     emit(RumahSakitLoading());
-
-  //     String uri = 'http://192.168.166.39:8000/api/rumahsakit';
-
-  //     final response = await http.get(Uri.parse(uri));
-
-  //     var result = jsonDecode(response.body);
-  //     emit(RumahSakitSuccess(rumahSakit: rumahSakitFromJson(json.encode(result['data']))));
-
-  //     print(result['data']);
-  //     print(uri);
-  //   });
   }
 }

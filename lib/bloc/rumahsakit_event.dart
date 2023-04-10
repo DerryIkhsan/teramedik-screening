@@ -7,3 +7,8 @@ class GetMoreRumahSakitEvent extends RumahSakitEvent{
 
   GetMoreRumahSakitEvent({required this.page});
 }
+class GetDetailRumahSakitEvent extends RumahSakitEvent{
+  final int id;
+
+  GetDetailRumahSakitEvent({required this.id});
+}

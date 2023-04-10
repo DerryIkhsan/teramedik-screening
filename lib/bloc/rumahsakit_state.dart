@@ -17,3 +17,8 @@ class RumahSakitSuccess extends RumahSakitState {
   @override
   List<Object> get props => [rumahSakit];
 }
+class RumahSakitDetailSuccess extends RumahSakitState{
+  final RumahSakitDetail rumahSakitDetail;
+
+  RumahSakitDetailSuccess({required this.rumahSakitDetail});
+}

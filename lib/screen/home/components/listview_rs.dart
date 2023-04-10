@@ -21,11 +21,11 @@ class ListViewRS extends StatelessWidget {
         shrinkWrap: true,
         children: data
             .map((e) => GestureDetector(
-                  onTap: () {
-                    Navigator.push(
+                  onTap: () async {
+                    await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DetailScreen(),
+                        builder: (context) => DetailScreen(id: e.id),
                       ),
                     );
                   },
