@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:teramedik/detail_screen.dart';
+import 'package:teramedik/login_screen.dart';
+import 'package:teramedik/no_connection_screen.dart';
 import 'package:teramedik/splash_screen.dart';
 import 'theme.dart';
 
@@ -478,6 +480,8 @@ class MyApp extends StatelessWidget {
         // home: TesPage(),
         // home: DetailScreen(),
         home: SplashScreen(),
+        // home: NoConnectionScreen(),
+        // home: LoginScreen(),
       );
     });
   }

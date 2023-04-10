@@ -1,8 +1,28 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:teramedik/theme.dart';
 
-class SplashScreen extends StatelessWidget {
+import 'login_screen.dart';
+
+class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    Timer.periodic(Duration(seconds: 3), (timer){
+      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+
+      timer.cancel();
+    });
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +37,7 @@ class SplashScreen extends StatelessWidget {
           children: [
             // Header
             Container(
-              height: bodyHeight * 0.2, // 30% device body
+              height: bodyHeight * 0.2, // 20% device body
               child: Column(
                 children: [
                   SizedBox(height: 70,),
@@ -41,7 +61,7 @@ class SplashScreen extends StatelessWidget {
                         style: TextStyle(
                           color: colorGreen,
                           fontSize: 42,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
@@ -71,7 +91,7 @@ class SplashScreen extends StatelessWidget {
 
             // Footer
             Container(
-              height: bodyHeight * 0.2, // 30% device body
+              height: bodyHeight * 0.2, // 20% device body
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
