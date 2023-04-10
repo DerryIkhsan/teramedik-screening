@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teramedik/models/rumahsakit.dart';
 
 import '../../../theme.dart';
 import '../../detail/detail_screen.dart';
@@ -9,7 +10,7 @@ class GridViewRS extends StatelessWidget {
     required this.data,
   }) : super(key: key);
 
-  final List<Map<String, String>> data;
+  final List<RumahSakit> data;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,7 @@ class GridViewRS extends StatelessWidget {
                                 topRight: Radius.circular(8),
                               ),
                               image: DecorationImage(
-                                image: NetworkImage('${e['image']}'),
+                                image: NetworkImage('${e.image}'),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -64,7 +65,7 @@ class GridViewRS extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  '${e['nama']}',
+                                  '${e.rumah_sakit}',
                                   style: TextStyle(
                                     color: colorWhite,
                                     fontSize: 16,
@@ -72,7 +73,7 @@ class GridViewRS extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  '${e['lokasi']}',
+                                  '${e.lokasi}',
                                   style: TextStyle(
                                     color: colorWhite,
                                     fontWeight: FontWeight.w500,

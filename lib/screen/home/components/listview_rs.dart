@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teramedik/models/rumahsakit.dart';
 
 import '../../../theme.dart';
 import '../../detail/detail_screen.dart';
@@ -10,7 +11,7 @@ class ListViewRS extends StatelessWidget {
     required this.data,
   }) : super(key: key);
 
-  final List<Map<String, String>> data;
+  final List<RumahSakit> data;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +45,7 @@ class ListViewRS extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           image: DecorationImage(
-                            image: NetworkImage('${e['image']}'),
+                            image: NetworkImage('${e.image}'),
                             fit: BoxFit.cover,
                           ),
                           boxShadow: [
@@ -85,7 +86,7 @@ class ListViewRS extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  '${e['nama']}',
+                                  '${e.rumah_sakit}',
                                   style: TextStyle(
                                     fontSize: 26,
                                     fontWeight: FontWeight.w700,
@@ -93,7 +94,7 @@ class ListViewRS extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  '${e['lokasi']}',
+                                  '${e.lokasi}',
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 // import '../screen/detail_screen.dart';
+import '../../bloc/rumahsakit_bloc.dart';
 import '../../theme.dart';
 import 'components/gridview_rs.dart';
 import 'components/listview_rs.dart';
@@ -138,6 +140,13 @@ class _HomeScreen extends State<HomeScreen> {
   ];
 
   @override
+  void initState() {
+    GetRumahSakitEvent();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -222,7 +231,29 @@ class _HomeScreen extends State<HomeScreen> {
             SizedBox(
               height: 10,
             ),
-            isGridView ? GridViewRS(data: data) : ListViewRS(data: data),
+
+            // Bloc Build RS
+            BlocBuilder<RumahSakitBloc, RumahSakitState>(
+              builder: (context, state) {
+                if(state is RumahSakitLoading){
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+
+                if(state is RumahSakitSuccess){
+                  // return GridViewRS(data: state.rumahSakit);
+                  return (isGridView ? GridViewRS(data: state.rumahSakit) : ListViewRS(data: state.rumahSakit));
+
+                }
+
+                return Center(
+                  child: Text('No data'),
+                );
+                
+              },
+            ),
+            // isGridView ? GridViewRS(data: data) : ListViewRS(data: data),
             Container(
               margin: EdgeInsets.only(top: 10, right: 20),
               width: double.infinity,

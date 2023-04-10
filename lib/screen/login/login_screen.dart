@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:teramedik/bloc/rumahsakit_bloc.dart';
 import 'package:teramedik/theme.dart';
 
 import '../home/home_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.of(context).size.height;
@@ -89,6 +95,8 @@ class LoginScreen extends StatelessWidget {
                       ),
                       onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+
+                        // GetRumahSakitEvent();
                       },
                       child: Text(
                         'Login',

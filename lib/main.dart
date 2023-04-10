@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RumahSakitBloc(),
+      create: (context) => RumahSakitBloc()..add(GetRumahSakitEvent()),
       child: MaterialApp(
         theme: ThemeData(
           primarySwatch: Colors.green,

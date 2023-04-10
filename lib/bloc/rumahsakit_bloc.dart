@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:http/http.dart' as http;
+
+import '../models/rumahsakit.dart';
 
 part 'rumahsakit_event.dart';
 part 'rumahsakit_state.dart';
@@ -9,9 +13,15 @@ class RumahSakitBloc extends Bloc<RumahSakitEvent, RumahSakitState> {
     on<RumahSakitEvent>((event, emit) async {
       emit(RumahSakitLoading());
 
-      final response = await http.get(Uri.parse('localhost:8000/api/rumahsakit'));
+      String uri = 'http://192.168.166.39:8000/api/rumahsakit';
+;
+      final response = await http.get(Uri.parse(uri));
 
-      print(response);
+      var result = jsonDecode(response.body);
+      emit(RumahSakitSuccess(rumahSakit: rumahSakitFromJson(json.encode(result['data']))));
+
+      print(result['data']);
+      print(uri);
     });
   }
 }
