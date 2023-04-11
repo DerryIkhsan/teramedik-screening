@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teramedik/models/rumahsakit.dart';
 import '../../bloc/rumahsakit_bloc.dart';
 import '../../theme.dart';
 import 'components/gridview_rs.dart';
@@ -14,12 +15,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreen extends State<HomeScreen> {
   bool isGridView = true;
+  late RumahSakit rumahSakit;
+
+  int page = 2;
 
   @override
   void initState() {
     // TODO: implement initState
-    context.read<RumahSakitBloc>().add(GetRumahSakitEvent());
-
     super.initState();
   }
 
@@ -132,7 +134,6 @@ class _HomeScreen extends State<HomeScreen> {
                     }
 
                     if (state is RumahSakitSuccess) {
-                      print(state.rumahSakit.length);
 
                       return (isGridView
                           ? GridViewRS(data: state.rumahSakit)
@@ -154,8 +155,7 @@ class _HomeScreen extends State<HomeScreen> {
                   onPressed: () {
                     context
                         .read<RumahSakitBloc>()
-                        .add(GetMoreRumahSakitEvent(page: 2));
-                    print('clicked');
+                        .add(GetMoreRumahSakitEvent());
                   },
                   child: Text(
                     'Get More',

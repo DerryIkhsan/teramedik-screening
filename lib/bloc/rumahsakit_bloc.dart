@@ -12,6 +12,9 @@ part 'rumahsakit_event.dart';
 part 'rumahsakit_state.dart';
 
 class RumahSakitBloc extends Bloc<RumahSakitEvent, RumahSakitState> {
+  List<RumahSakit> rumahSakitList = [];
+  int _page = 1;
+
   RumahSakitBloc() : super(RumahSakitInitial()) {
     on<RumahSakitEvent>((event, emit) async {
       emit(RumahSakitLoading());
@@ -21,28 +24,37 @@ class RumahSakitBloc extends Bloc<RumahSakitEvent, RumahSakitState> {
 
         final response = await http.get(Uri.parse(uri));
 
-        var result = jsonDecode(response.body);
-        emit(RumahSakitSuccess(
-            rumahSakit: rumahSakitFromJson(json.encode(result['data']))));
-      } else if (event is GetMoreRumahSakitEvent) {
-        String page = event.page.toString();
-        String uri = 'http://192.168.166.39:8000/api/rumahsakit?page=${page}';
+        var result  = jsonDecode(response.body);
+        List data   = result['data'];
+        
+        rumahSakitList.clear();
+        _page = 1;
+
+        data.map((data) => rumahSakitList.add(RumahSakit.fromJson(data))).toList();
+        emit(RumahSakitSuccess(rumahSakit: rumahSakitList));
+      
+      } 
+      else if (event is GetMoreRumahSakitEvent) {
+        _page++;
+        String uri = 'http://192.168.166.39:8000/api/rumahsakit?page=${_page}';
 
         final response = await http.get(Uri.parse(uri));
 
-        var result = jsonDecode(response.body);
-        emit(RumahSakitSuccess(rumahSakit: rumahSakitFromJson(json.encode(result['data']))));
+        var result  = jsonDecode(response.body);
+        List data = result['data'];
 
+        data.map((data) => rumahSakitList.add(RumahSakit.fromJson(data))).toList();
+        emit(RumahSakitSuccess(rumahSakit: rumahSakitList));
 
-      } else if (event is GetDetailRumahSakitEvent) {
+      } 
+      else if (event is GetDetailRumahSakitEvent) {
         String id = event.id.toString();
         String uri = 'http://192.168.166.39:8000/api/rumahsakit/${id}';
 
         final response = await http.get(Uri.parse(uri));
 
         var result = jsonDecode(response.body);
-        emit(RumahSakitDetailSuccess(
-            rumahSakitDetail: RumahSakitDetail.fromJson(result)));
+        emit(RumahSakitDetailSuccess(rumahSakitDetail: RumahSakitDetail.fromJson(result)));
       }
     });
   }

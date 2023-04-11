@@ -5,7 +5,7 @@ import 'package:teramedik/models/rumahsakit.dart';
 import '../../../bloc/rumahsakit_bloc.dart';
 import '../../../theme.dart';
 import '../../detail/detail_screen.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:teramedik/models/rumahsakit.dart';
 
 
 class ListViewRS extends StatefulWidget {
@@ -22,7 +22,8 @@ class ListViewRS extends StatefulWidget {
 
 class _ListViewRSState extends State<ListViewRS> {
   final _scrollController = ScrollController();
-  final _scrollThreshold = 100.0;
+  final _scrollThreshold = 50.0;
+  int _indexPage = 1;
   
 
   _ListViewRSState() {
@@ -34,18 +35,14 @@ class _ListViewRSState extends State<ListViewRS> {
     final currentScroll = _scrollController.position.pixels;
     
     if (maxScroll - currentScroll <= _scrollThreshold) {
-      context.read<RumahSakitBloc>().add(GetMoreRumahSakitEvent(page: 3));
-
-      print('tahu');
+      context.read<RumahSakitBloc>().add(GetMoreRumahSakitEvent());
     }
-    
   }
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView(
-        controller: _scrollController,
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         children: widget.data
@@ -123,7 +120,7 @@ class _ListViewRSState extends State<ListViewRS> {
                                   ),
                                 ),
                                 Text(
-                                  '${e.lokasi}',
+                                  '${e.id} - ${e.lokasi}',
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,

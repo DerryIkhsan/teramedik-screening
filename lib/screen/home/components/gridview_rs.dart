@@ -25,7 +25,9 @@ class GridViewRS extends StatelessWidget {
                       await Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => DetailScreen(id: e.id,),
+                          builder: (context) => DetailScreen(
+                            id: e.id,
+                          ),
                         ),
                       );
                     },
@@ -73,7 +75,7 @@ class GridViewRS extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  '${e.lokasi}',
+                                  'ID:${e.id} - ${e.lokasi}',
                                   style: TextStyle(
                                     color: colorWhite,
                                     fontWeight: FontWeight.w500,

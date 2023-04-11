@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teramedik/models/rumahsakit.dart';
-import 'package:teramedik/models/rumahsakitdetail.dart';
 import 'package:teramedik/theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -76,12 +74,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.pop(context);
-                          // Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomeScreen()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
                         },
                         child: Stack(
                           children: [

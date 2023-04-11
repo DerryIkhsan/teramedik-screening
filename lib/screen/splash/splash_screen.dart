@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:teramedik/theme.dart';
 
+import '../home/home_screen.dart';
 import '../login/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -16,7 +17,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Timer.periodic(Duration(seconds: 3), (timer){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+      // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
 
       timer.cancel();
     });
