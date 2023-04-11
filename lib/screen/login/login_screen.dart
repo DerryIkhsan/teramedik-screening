@@ -121,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         onPressed: () async {
                           final response = await http.post(
-                              Uri.parse('http://192.168.166.39:8000/api/login'),
+                              Uri.parse('https://derryikhsan.masuk.web.id/api/login'),
                               body: {
                                 'name': userController.text.toString(),
                                 'password': passController.text.toString(),

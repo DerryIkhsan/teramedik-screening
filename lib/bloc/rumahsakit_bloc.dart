@@ -19,7 +19,8 @@ class RumahSakitBloc extends Bloc<RumahSakitEvent, RumahSakitState> {
       emit(RumahSakitLoading());
 
       if (event is GetRumahSakitEvent) {
-        String uri = 'http://192.168.166.39:8000/api/rumahsakit';
+        String uri = 'https://derryikhsan.masuk.web.id/api/rumahsakit';
+        // String uri = 'https://derryikhsan.masuk.web.id/api/rumahsakit';
 
         final response = await http.get(Uri.parse(uri));
 
@@ -35,7 +36,7 @@ class RumahSakitBloc extends Bloc<RumahSakitEvent, RumahSakitState> {
       } 
       else if (event is GetMoreRumahSakitEvent) {
         _page++;
-        String uri = 'http://192.168.166.39:8000/api/rumahsakit?page=${_page}';
+        String uri = 'https://derryikhsan.masuk.web.id/api/rumahsakit?page=${_page}';
 
         final response = await http.get(Uri.parse(uri));
 
@@ -48,7 +49,7 @@ class RumahSakitBloc extends Bloc<RumahSakitEvent, RumahSakitState> {
       } 
       else if (event is GetDetailRumahSakitEvent) {
         String id = event.id.toString();
-        String uri = 'http://192.168.166.39:8000/api/rumahsakit/${id}';
+        String uri = 'https://derryikhsan.masuk.web.id/api/rumahsakit/${id}';
 
         final response = await http.get(Uri.parse(uri));
 
