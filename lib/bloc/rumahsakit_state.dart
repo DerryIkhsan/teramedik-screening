@@ -1,6 +1,6 @@
 part of 'rumahsakit_bloc.dart';
 
-abstract class RumahSakitState extends Equatable {
+abstract class RumahSakitState {
   RumahSakitState();
 
   @override

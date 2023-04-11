@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:teramedik/screen/no_connection/no_connection_screen.dart';
 import 'package:teramedik/theme.dart';
 
 import '../home/home_screen.dart';
 import '../login/login_screen.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -14,11 +16,26 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  // cek koneksi
+  _checkConnection() async {
+    bool result = await InternetConnectionChecker().hasConnection;
+
+    if (result == true) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => LoginScreen()));
+    } else {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => NoConnectionScreen()));
+    }
+  }
+
   @override
   void initState() {
-    Timer.periodic(Duration(seconds: 3), (timer){
-      // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
-      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+    Timer.periodic(Duration(seconds: 5), (timer) {
+      _checkConnection();
+
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => NoConnectionScreen()));
 
       timer.cancel();
     });
@@ -42,7 +59,9 @@ class _SplashScreenState extends State<SplashScreen> {
               height: bodyHeight * 0.2, // 20% device body
               child: Column(
                 children: [
-                  SizedBox(height: 70,),
+                  SizedBox(
+                    height: 70,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -56,10 +75,9 @@ class _SplashScreenState extends State<SplashScreen> {
                           ),
                         ),
                       ),
-
                       SizedBox(width: 10),
-
-                      Text('Teramedik',
+                      Text(
+                        'Teramedik',
                         style: TextStyle(
                           color: colorGreen,
                           fontSize: 42,
@@ -68,8 +86,11 @@ class _SplashScreenState extends State<SplashScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 10,),
-                  Text('Aplikasi SIMRS No. 1 Di Indonesia',
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'Aplikasi SIMRS No. 1 Di Indonesia',
                     style: TextStyle(
                       color: colorDark,
                       fontSize: 20,
@@ -84,11 +105,10 @@ class _SplashScreenState extends State<SplashScreen> {
             Container(
               height: bodyHeight * 0.6, // 60% device body
               decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/medicine.png'),
-                  fit: BoxFit.contain,
-                )
-              ),
+                  image: DecorationImage(
+                image: AssetImage('assets/images/medicine.png'),
+                fit: BoxFit.contain,
+              )),
             ),
 
             // Footer
@@ -97,14 +117,16 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Powered by, ',
+                  Text(
+                    'Powered by, ',
                     style: TextStyle(
                       color: colorDark,
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
-                  Text('Terakorp Indonesia',
+                  Text(
+                    'Terakorp Indonesia',
                     style: TextStyle(
                       color: colorDark,
                       fontSize: 14,
