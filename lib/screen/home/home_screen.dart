@@ -132,6 +132,8 @@ class _HomeScreen extends State<HomeScreen> {
                     }
 
                     if (state is RumahSakitSuccess) {
+                      print(state.rumahSakit.length);
+
                       return (isGridView
                           ? GridViewRS(data: state.rumahSakit)
                           : ListViewRS(data: state.rumahSakit));

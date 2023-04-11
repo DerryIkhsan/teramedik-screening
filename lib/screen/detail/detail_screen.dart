@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sizer/sizer.dart';
 import 'package:teramedik/models/rumahsakit.dart';
 import 'package:teramedik/models/rumahsakitdetail.dart';
 import 'package:teramedik/theme.dart';

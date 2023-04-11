@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teramedik/models/rumahsakit.dart';
 
+import '../../../bloc/rumahsakit_bloc.dart';
 import '../../../theme.dart';
 import '../../detail/detail_screen.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 
-class ListViewRS extends StatelessWidget {
-  const ListViewRS({
+class ListViewRS extends StatefulWidget {
+  ListViewRS({
     Key? key,
     required this.data,
   }) : super(key: key);
@@ -14,12 +17,38 @@ class ListViewRS extends StatelessWidget {
   final List<RumahSakit> data;
 
   @override
+  State<ListViewRS> createState() => _ListViewRSState();
+}
+
+class _ListViewRSState extends State<ListViewRS> {
+  final _scrollController = ScrollController();
+  final _scrollThreshold = 100.0;
+  
+
+  _ListViewRSState() {
+    _scrollController.addListener(_onScroll);
+  }
+
+  void _onScroll(){
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.position.pixels;
+    
+    if (maxScroll - currentScroll <= _scrollThreshold) {
+      context.read<RumahSakitBloc>().add(GetMoreRumahSakitEvent(page: 3));
+
+      print('tahu');
+    }
+    
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView(
+        controller: _scrollController,
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
-        children: data
+        children: widget.data
             .map((e) => GestureDetector(
                   onTap: () async {
                     await Navigator.push(

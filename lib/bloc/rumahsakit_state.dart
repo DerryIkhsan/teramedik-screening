@@ -1,24 +1,21 @@
 part of 'rumahsakit_bloc.dart';
 
-abstract class RumahSakitState {
+abstract class RumahSakitState extends Equatable {
   RumahSakitState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class RumahSakitInitial extends RumahSakitState {}
 class RumahSakitLoading extends RumahSakitState {}
 class RumahSakitSuccess extends RumahSakitState {
-  final List<RumahSakit> rumahSakit;
+  List<RumahSakit> rumahSakit;
 
   RumahSakitSuccess({required this.rumahSakit});
-
-  @override
-  List<Object> get props => [rumahSakit];
 }
 class RumahSakitDetailSuccess extends RumahSakitState{
-  final RumahSakitDetail rumahSakitDetail;
+  RumahSakitDetail rumahSakitDetail;
 
   RumahSakitDetailSuccess({required this.rumahSakitDetail});
 }
