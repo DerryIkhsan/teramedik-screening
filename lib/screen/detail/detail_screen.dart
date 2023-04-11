@@ -74,7 +74,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(getRumahSakitEvent: true,)));
                         },
                         child: Stack(
                           children: [

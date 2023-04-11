@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:teramedik/bloc/rumahsakit_bloc.dart';
 import 'package:teramedik/theme.dart';
 
@@ -132,6 +133,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               jsonDecode(response.body);
 
                           if (result.containsKey('token')) {
+                            SharedPreferences _prefs = await SharedPreferences.getInstance();
+                            _prefs.setString('user', userController.text.toString());
+
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(

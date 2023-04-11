@@ -20,7 +20,6 @@ class RumahSakitBloc extends Bloc<RumahSakitEvent, RumahSakitState> {
 
       if (event is GetRumahSakitEvent) {
         String uri = 'https://derryikhsan.masuk.web.id/api/rumahsakit';
-        // String uri = 'https://derryikhsan.masuk.web.id/api/rumahsakit';
 
         final response = await http.get(Uri.parse(uri));
 

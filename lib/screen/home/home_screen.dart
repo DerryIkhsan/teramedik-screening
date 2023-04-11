@@ -1,5 +1,7 @@
+import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:teramedik/models/rumahsakit.dart';
 import '../../bloc/rumahsakit_bloc.dart';
 import '../../theme.dart';
@@ -7,7 +9,9 @@ import 'components/gridview_rs.dart';
 import 'components/listview_rs.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  bool getRumahSakitEvent;
+
+  HomeScreen({Key? key, this.getRumahSakitEvent = false}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreen();
@@ -15,14 +19,27 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreen extends State<HomeScreen> {
   bool isGridView = true;
-  late RumahSakit rumahSakit;
-
-  int page = 2;
+  String? _user = 'Guest';
 
   @override
   void initState() {
     // TODO: implement initState
+    if(widget.getRumahSakitEvent){
+      getRumahSakitEvent();
+    }
     super.initState();
+  }
+
+  getRumahSakitEvent(){
+    context.read<RumahSakitBloc>().add(GetRumahSakitEvent());
+  }
+
+  _getUser() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      _user = StringUtils.capitalize('${_prefs.getString('user')}');
+    });
   }
 
   @override
@@ -96,7 +113,7 @@ class _HomeScreen extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Hello, Admin',
+                        'Hello, ${_user}',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
@@ -126,7 +143,7 @@ class _HomeScreen extends State<HomeScreen> {
                   builder: (context, state) {
                     if (state is RumahSakitLoading) {
                       return Container(
-                        height: deviceHeight * .7,
+                        height: bodyHeight * .7,
                         child: Center(
                           child: CircularProgressIndicator(),
                         ),
