@@ -70,9 +70,7 @@ Aplikasi Teramedik merupakan aplikasi yang digunakan untuk memenuhi salah satu s
 
 - Atau teman" dapat melihat sekilas demo aplikasi pada video dibawah ini.
 
-<video width="320" height="240">
-  <source src="https://github.com/DerryIkhsan/teramedik-test/blob/master/result/demo%20app.mp4" type="video/mp4">
-</video>
+    <img alt="GIF" src="https://github.com/DerryIkhsan/teramedik-test/blob/master/result/demo%20app.gif?raw=true" width="260" height="480" />
 
 - Sekian untuk dokumentasi aplikasi Teramedik ini, dengan dokumentasi ini semoga dapat membantu teman" dalam 
     menggunakan aplikasi tersebut.
