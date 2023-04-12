@@ -26,7 +26,7 @@ Aplikasi Teramedik merupakan aplikasi yang digunakan untuk memenuhi salah satu s
 - Pertama" silahkan teman" download terlebih dahulu aplikasi melalui link download dibawah ini.
 
 
-    <a href="https://github.com/DerryIkhsan/teramedik-test/blob/master/teramedik-app-release.apk" download><b>Download Aplikasi</b></a>
+    <a href="https://github.com/DerryIkhsan/teramedik-test/blob/master/teramedik-app-release.apk?raw=true" download><b>Download Aplikasi</b></a>
 
 
 - Setelah selesai mendownload, silahkan teman" install aplikasinya.
