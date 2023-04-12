@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teramedik/bloc/rumahsakit_bloc.dart';
-import 'screen/no_connection/no_connection_screen.dart';
+import 'package:teramedik/screen/home/home_screen.dart';
 import 'screen/splash/splash_screen.dart';
 
 void main() {
@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.green,
         ),
         debugShowCheckedModeBanner: false,
-        home: SplashScreen(),
+        // home: SplashScreen(),
+        home: HomeScreen(),
       ),
     );
   }

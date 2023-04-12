@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teramedik/models/rumahsakit.dart';
@@ -7,42 +9,53 @@ import '../../../theme.dart';
 import '../../detail/detail_screen.dart';
 import 'package:teramedik/models/rumahsakit.dart';
 
-
 class ListViewRS extends StatefulWidget {
   ListViewRS({
     Key? key,
     required this.data,
+    required this.isGridView,
   }) : super(key: key);
 
   final List<RumahSakit> data;
+  bool isGridView;
 
   @override
   State<ListViewRS> createState() => _ListViewRSState();
 }
 
 class _ListViewRSState extends State<ListViewRS> {
-  final _scrollController = ScrollController();
-  final _scrollThreshold = 50.0;
-  int _indexPage = 1;
-  
+  ScrollController _scrollController = ScrollController();
+  double? _scrollPosition, _maxScrollPosition;
 
-  _ListViewRSState() {
-    _scrollController.addListener(_onScroll);
+  _scrollListener() {
+    setState(() {
+      _scrollPosition = _scrollController.position.pixels;
+      _maxScrollPosition = _scrollController.position.maxScrollExtent;
+
+      if (_scrollPosition == _maxScrollPosition) {
+        context.read<RumahSakitBloc>().add(GetMoreRumahSakitEvent());
+      }
+    });
   }
 
-  void _onScroll(){
-    final maxScroll = _scrollController.position.maxScrollExtent;
-    final currentScroll = _scrollController.position.pixels;
-    
-    if (maxScroll - currentScroll <= _scrollThreshold) {
-      context.read<RumahSakitBloc>().add(GetMoreRumahSakitEvent());
-    }
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    _scrollController.addListener(_scrollListener);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController;
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView(
+        controller: _scrollController,
         scrollDirection: Axis.vertical,
         shrinkWrap: true,
         children: widget.data
@@ -51,7 +64,7 @@ class _ListViewRSState extends State<ListViewRS> {
                     await Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => DetailScreen(id: e.id),
+                        builder: (context) => DetailScreen(id: e.id, isGridView: widget.isGridView),
                       ),
                     );
                   },
@@ -109,7 +122,8 @@ class _ListViewRSState extends State<ListViewRS> {
                         child: Stack(
                           children: [
                             Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment:
+                                  CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   '${e.rumah_sakit}',

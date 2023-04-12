@@ -7,8 +7,10 @@ import '../../bloc/rumahsakit_bloc.dart';
 import '../home/home_screen.dart';
 
 class DetailScreen extends StatefulWidget {
-  final int id;
-  DetailScreen({Key? key, required this.id}) : super(key: key);
+  int id;
+  bool isGridView;
+  DetailScreen({Key? key, required this.id, required this.isGridView})
+      : super(key: key);
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -31,6 +33,8 @@ class _DetailScreenState extends State<DetailScreen> {
   void initState() {
     // TODO: implement initState
     context.read<RumahSakitBloc>().add(GetDetailRumahSakitEvent(id: widget.id));
+
+    print(widget.isGridView);
 
     super.initState();
   }
@@ -55,8 +59,6 @@ class _DetailScreenState extends State<DetailScreen> {
               }
 
               if (state is RumahSakitDetailSuccess) {
-                print(state.rumahSakitDetail);
-
                 return Column(
                   children: [
                     // Background Image
@@ -74,7 +76,13 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                       child: GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(getRumahSakitEvent: true,)));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomeScreen(
+                                        closeDetailRumahSakitEvent: true,
+                                        isGridView: widget.isGridView,
+                                      )));
                         },
                         child: Stack(
                           children: [

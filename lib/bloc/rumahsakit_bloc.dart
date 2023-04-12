@@ -16,9 +16,9 @@ class RumahSakitBloc extends Bloc<RumahSakitEvent, RumahSakitState> {
 
   RumahSakitBloc() : super(RumahSakitInitial()) {
     on<RumahSakitEvent>((event, emit) async {
-      emit(RumahSakitLoading());
-
       if (event is GetRumahSakitEvent) {
+        emit(RumahSakitLoading());
+        
         String uri = 'https://derryikhsan.masuk.web.id/api/rumahsakit';
 
         final response = await http.get(Uri.parse(uri));
@@ -46,6 +46,9 @@ class RumahSakitBloc extends Bloc<RumahSakitEvent, RumahSakitState> {
         emit(RumahSakitSuccess(rumahSakit: rumahSakitList));
 
       } 
+      else if (event is CloseDetailRumahSakitEvent) {
+        emit(RumahSakitSuccess(rumahSakit: rumahSakitList));
+      }
       else if (event is GetDetailRumahSakitEvent) {
         String id = event.id.toString();
         String uri = 'https://derryikhsan.masuk.web.id/api/rumahsakit/${id}';

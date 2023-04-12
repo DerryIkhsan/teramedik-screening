@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:teramedik/bloc/rumahsakit_bloc.dart';
 import 'package:teramedik/theme.dart';
 
 import '../home/home_screen.dart';
@@ -35,6 +34,14 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
     );
+  }
+
+  _setUser(String user) async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      _prefs.setString('user', user);
+    });
   }
 
   @override
@@ -122,7 +129,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         onPressed: () async {
                           final response = await http.post(
-                              Uri.parse('https://derryikhsan.masuk.web.id/api/login'),
+                              Uri.parse(
+                                  'https://derryikhsan.masuk.web.id/api/login'),
                               body: {
                                 'name': userController.text.toString(),
                                 'password': passController.text.toString(),
@@ -133,8 +141,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               jsonDecode(response.body);
 
                           if (result.containsKey('token')) {
-                            SharedPreferences _prefs = await SharedPreferences.getInstance();
-                            _prefs.setString('user', userController.text.toString());
+
+                            _setUser(userController.text.toString());
 
                             Navigator.push(
                                 context,
@@ -153,7 +161,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                 duration: Duration(seconds: 2),
                                 backgroundColor: Colors.red.withOpacity(.7),
                                 content: showNotif(
-                                    message: "Error : Username atau password salah"),
+                                    message:
+                                        "Error : Username atau password salah"),
                               ),
                             );
                           }

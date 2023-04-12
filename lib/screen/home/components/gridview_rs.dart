@@ -1,16 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teramedik/models/rumahsakit.dart';
 
+import '../../../bloc/rumahsakit_bloc.dart';
 import '../../../theme.dart';
 import '../../detail/detail_screen.dart';
 
-class GridViewRS extends StatelessWidget {
-  const GridViewRS({
+class GridViewRS extends StatefulWidget {
+  GridViewRS({
     Key? key,
     required this.data,
+    required this.isGridView,
   }) : super(key: key);
 
   final List<RumahSakit> data;
+  bool isGridView;
+
+  @override
+  State<GridViewRS> createState() => _GridViewRSState();
+}
+
+class _GridViewRSState extends State<GridViewRS> {
+  ScrollController _scrollController = ScrollController();
+  double? _scrollPosition, _maxScrollPosition; 
+
+  _scrollListener() {
+    setState(() {
+      _scrollPosition = _scrollController.position.pixels;
+      _maxScrollPosition = _scrollController.position.maxScrollExtent;
+
+      if (_scrollPosition == _maxScrollPosition) {
+        context.read<RumahSakitBloc>().add(GetMoreRumahSakitEvent());
+      }
+    });
+  } 
+
+   @override
+  void initState() {
+    _scrollController = ScrollController();
+    _scrollController.addListener(_scrollListener);
+
+    
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController;
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +56,9 @@ class GridViewRS extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.all(10),
         child: GridView.count(
+          controller: _scrollController,
           crossAxisCount: 2,
-          children: data
+          children: widget.data
               .map((e) => GestureDetector(
                     onTap: () async {
                       await Navigator.push(
@@ -27,6 +66,7 @@ class GridViewRS extends StatelessWidget {
                         MaterialPageRoute(
                           builder: (context) => DetailScreen(
                             id: e.id,
+                            isGridView: widget.isGridView,
                           ),
                         ),
                       );

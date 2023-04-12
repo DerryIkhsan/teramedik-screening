@@ -2,16 +2,20 @@ import 'package:basic_utils/basic_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:teramedik/models/rumahsakit.dart';
 import '../../bloc/rumahsakit_bloc.dart';
 import '../../theme.dart';
 import 'components/gridview_rs.dart';
 import 'components/listview_rs.dart';
 
 class HomeScreen extends StatefulWidget {
-  bool getRumahSakitEvent;
+  bool closeDetailRumahSakitEvent;
+  bool isGridView;
 
-  HomeScreen({Key? key, this.getRumahSakitEvent = false}) : super(key: key);
+  HomeScreen(
+      {Key? key,
+      this.closeDetailRumahSakitEvent = false,
+      this.isGridView = true})
+      : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreen();
@@ -24,14 +28,20 @@ class _HomeScreen extends State<HomeScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    if(widget.getRumahSakitEvent){
-      getRumahSakitEvent();
+    if (widget.closeDetailRumahSakitEvent) {
+      closeDetailRumahSakitEvent();
     }
+
+    setState(() {
+      isGridView = widget.isGridView;
+    });
+
+    _getUser();
     super.initState();
   }
 
-  getRumahSakitEvent(){
-    context.read<RumahSakitBloc>().add(GetRumahSakitEvent());
+  closeDetailRumahSakitEvent() {
+    context.read<RumahSakitBloc>().add(CloseDetailRumahSakitEvent());
   }
 
   _getUser() async {
@@ -69,12 +79,24 @@ class _HomeScreen extends State<HomeScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          Container(
+                            height: 25,
+                            width: 25,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image:
+                                    AssetImage('assets/images/healthcare.png'),
+                                fit: BoxFit.contain,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 10),
                           Text(
                             'Teramedik',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 24,
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.w500,
                               color: colorGreen,
                             ),
                           ),
@@ -151,10 +173,15 @@ class _HomeScreen extends State<HomeScreen> {
                     }
 
                     if (state is RumahSakitSuccess) {
-
                       return (isGridView
-                          ? GridViewRS(data: state.rumahSakit)
-                          : ListViewRS(data: state.rumahSakit));
+                          ? GridViewRS(
+                              data: state.rumahSakit,
+                              isGridView: isGridView,
+                            )
+                          : ListViewRS(
+                              data: state.rumahSakit,
+                              isGridView: isGridView,
+                            ));
                     }
 
                     return Center(
@@ -163,25 +190,6 @@ class _HomeScreen extends State<HomeScreen> {
                   },
                 ),
 
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: colorGreen,
-                    foregroundColor: colorWhite,
-                    minimumSize: Size(double.infinity, 50),
-                  ),
-                  onPressed: () {
-                    context
-                        .read<RumahSakitBloc>()
-                        .add(GetMoreRumahSakitEvent());
-                  },
-                  child: Text(
-                    'Get More',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
                 Container(
                   margin: EdgeInsets.only(top: 10, right: 20),
                   width: double.infinity,

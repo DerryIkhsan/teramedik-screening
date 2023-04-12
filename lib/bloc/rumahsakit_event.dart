@@ -8,3 +8,4 @@ class GetDetailRumahSakitEvent extends RumahSakitEvent{
 
   GetDetailRumahSakitEvent({required this.id});
 }
+class CloseDetailRumahSakitEvent extends RumahSakitEvent{}
