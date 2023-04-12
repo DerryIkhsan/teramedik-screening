@@ -5,6 +5,7 @@ import 'package:teramedik/models/rumahsakit.dart';
 import '../../../bloc/rumahsakit_bloc.dart';
 import '../../../theme.dart';
 import '../../detail/detail_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class GridViewRS extends StatefulWidget {
   GridViewRS({
@@ -88,7 +89,7 @@ class _GridViewRSState extends State<GridViewRS> {
                       child: Column(
                         children: [
                           Container(
-                            height: 130,
+                            height: 200.h,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(8),
@@ -102,7 +103,7 @@ class _GridViewRSState extends State<GridViewRS> {
                           ),
                           Container(
                             width: double.infinity,
-                            margin: EdgeInsets.only(top: 20, left: 20),
+                            margin: EdgeInsets.only(top: 10.sp, left: 20.sp),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -110,13 +111,15 @@ class _GridViewRSState extends State<GridViewRS> {
                                   '${e.rumah_sakit}',
                                   style: TextStyle(
                                     color: colorWhite,
-                                    fontSize: 16,
+                                    fontSize: 24.sp,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
+                                SizedBox(height: 10.h,),
                                 Text(
                                   'ID:${e.id} - ${e.lokasi}',
                                   style: TextStyle(
+                                    fontSize: 20.sp,
                                     color: colorWhite,
                                     fontWeight: FontWeight.w500,
                                   ),

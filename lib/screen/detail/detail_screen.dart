@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../bloc/rumahsakit_bloc.dart';
 import '../home/home_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class DetailScreen extends StatefulWidget {
   int id;
@@ -33,8 +34,6 @@ class _DetailScreenState extends State<DetailScreen> {
   void initState() {
     // TODO: implement initState
     context.read<RumahSakitBloc>().add(GetDetailRumahSakitEvent(id: widget.id));
-
-    print(widget.isGridView);
 
     super.initState();
   }
@@ -87,10 +86,11 @@ class _DetailScreenState extends State<DetailScreen> {
                         child: Stack(
                           children: [
                             Positioned(
-                              top: 20,
-                              left: 20,
+                              top: 50.sp,
+                              left: 20.sp,
                               child: Container(
-                                width: 70,
+                                width: 150.w,
+                                height: 60.h,
                                 padding: EdgeInsets.all(7),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(4),
@@ -98,7 +98,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                 ),
                                 child: Icon(
                                   Icons.arrow_back,
-                                  size: 30,
+                                  size: 40.sp,
                                   color: colorWhite,
                                 ),
                               ),
@@ -108,7 +108,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                     ),
                     Container(
-                      height: bodyHeight * 0.1, // 10% device body
+                      height: bodyHeight * 0.15, // 15% device body
                       width: double.infinity,
                       color: colorGreen,
                       child: Container(
@@ -124,16 +124,16 @@ class _DetailScreenState extends State<DetailScreen> {
                                   '${state.rumahSakitDetail.rumah_sakit}',
                                   style: TextStyle(
                                     color: colorWhite,
-                                    fontSize: 20,
+                                    fontSize: 40.sp,
                                     fontWeight: FontWeight.w700,
                                   ),
                                 ),
-                                SizedBox(height: 10),
+                                SizedBox(height: 10.h),
                                 Text(
                                   '${state.rumahSakitDetail.lokasi}',
                                   style: TextStyle(
                                     color: colorWhite,
-                                    fontSize: 16,
+                                    fontSize: 28.sp,
                                   ),
                                 ),
                               ],
@@ -143,13 +143,14 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                     ),
                     Container(
-                      height: bodyHeight * 0.5, // 50% device body
+                      height: bodyHeight * 0.45, // 45% device body
                       width: double.infinity,
                       color: colorGrey,
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
                             // start icon
+                            SizedBox(height: 50.h,),
                             Container(
                               margin: EdgeInsets.all(30),
                               child: Row(
@@ -162,8 +163,8 @@ class _DetailScreenState extends State<DetailScreen> {
                                       launch("tel://022 1234 1234");
                                     },
                                     child: Container(
-                                      width: 70,
-                                      height: 70,
+                                      width: 100.w,
+                                      height: 100.h,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(16),
                                         color: colorGreen,
@@ -171,7 +172,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                       child: Center(
                                         child: Icon(
                                           Icons.phone,
-                                          size: 30,
+                                          size: 50.sp,
                                           color: colorWhite,
                                         ),
                                       ),
@@ -182,8 +183,8 @@ class _DetailScreenState extends State<DetailScreen> {
                                       launchMap('Kota Bandung');
                                     },
                                     child: Container(
-                                      width: 70,
-                                      height: 70,
+                                      width: 100.w,
+                                      height: 100.h,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(16),
                                         color: colorGreen,
@@ -191,7 +192,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                       child: Center(
                                         child: Icon(
                                           Icons.pin_drop,
-                                          size: 30,
+                                          size: 50.sp,
                                           color: colorWhite,
                                         ),
                                       ),
@@ -204,8 +205,8 @@ class _DetailScreenState extends State<DetailScreen> {
                                           'mailto:derryikhsan@yahoo.co.id?subject=Send From Teramedik Apps');
                                     },
                                     child: Container(
-                                      width: 70,
-                                      height: 70,
+                                      width: 100.w,
+                                      height: 100.h,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(16),
                                         color: colorGreen,
@@ -213,7 +214,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                       child: Center(
                                         child: Icon(
                                           Icons.mail,
-                                          size: 30,
+                                          size: 50.sp,
                                           color: colorWhite,
                                         ),
                                       ),
@@ -226,12 +227,12 @@ class _DetailScreenState extends State<DetailScreen> {
 
                             // title
                             Container(
-                              margin: EdgeInsets.symmetric(horizontal: 20),
+                              margin: EdgeInsets.only(top: 50.h),
                               child: Text(
                                 '${state.rumahSakitDetail.rumah_sakit}',
                                 style: TextStyle(
                                   color: colorDark,
-                                  fontSize: 26,
+                                  fontSize: 34.sp,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -239,7 +240,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             // end title
 
                             SizedBox(
-                              height: 20,
+                              height: 30.h,
                             ),
 
                             // description
@@ -249,7 +250,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                 '${state.rumahSakitDetail.deskripsi}',
                                 style: TextStyle(
                                   color: colorDark,
-                                  fontSize: 16,
+                                  fontSize: 24.sp,
                                   wordSpacing: 1,
                                   letterSpacing: .5,
                                 ),
@@ -266,7 +267,7 @@ class _DetailScreenState extends State<DetailScreen> {
               }
 
               return Center(
-                child: Text('No data'),
+                child: CircularProgressIndicator(),
               );
             },
           ),

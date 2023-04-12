@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:teramedik/screen/no_connection/no_connection_screen.dart';
 import 'package:teramedik/theme.dart';
 
-import '../home/home_screen.dart';
 import '../login/login_screen.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    Timer.periodic(Duration(seconds: 10), (timer) {
+    Timer.periodic(Duration(seconds: 5), (timer) {
       _checkConnection();
 
       Navigator.push(context,
@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
       timer.cancel();
     });
-    // TODO: implement initState
+  //   // TODO: implement initState
     super.initState();
   }
 
@@ -62,14 +62,14 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 70,
+                      height: 70.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          height: 40,
-                          width: 40,
+                          height: 60.h,
+                          width: 60.w,
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage('assets/images/healthcare.png'),
@@ -77,25 +77,25 @@ class _SplashScreenState extends State<SplashScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(width: 10),
+                        SizedBox(width: 10.w),
                         Text(
                           'Teramedik',
                           style: TextStyle(
                             color: colorGreen,
-                            fontSize: 42,
+                            fontSize: 60.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ),
                       ],
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 10.h,
                     ),
                     Text(
                       'Aplikasi SIMRS No. 1 Di Indonesia',
                       style: TextStyle(
                         color: colorDark,
-                        fontSize: 20,
+                        fontSize: 35.sp,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -123,7 +123,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       'Powered by, ',
                       style: TextStyle(
                         color: colorDark,
-                        fontSize: 14,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -131,7 +131,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       'Terakorp Indonesia',
                       style: TextStyle(
                         color: colorDark,
-                        fontSize: 14,
+                        fontSize: 20.sp,
                         fontWeight: FontWeight.w700,
                       ),
                     ),

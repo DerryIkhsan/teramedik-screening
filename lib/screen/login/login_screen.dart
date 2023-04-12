@@ -6,6 +6,7 @@ import 'package:teramedik/theme.dart';
 
 import '../home/home_screen.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -22,14 +23,14 @@ class _LoginScreenState extends State<LoginScreen> {
     return Container(
       padding: EdgeInsets.all(5),
       width: double.infinity,
-      height: 60,
+      height: 60.h,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             '$message',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            style: TextStyle(fontSize: 28.sp, fontWeight: FontWeight.w500),
           ),
         ],
       ),
@@ -64,17 +65,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 70,
+                        height: 70.h,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(width: 10),
+                          SizedBox(width: 10.w),
                           Text(
                             'Login Form',
                             style: TextStyle(
                               color: colorGreen,
-                              fontSize: 42,
+                              fontSize: 60.sp,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -86,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 // Illustration
                 Container(
-                  height: bodyHeight * 0.3, // 40% device body
+                  height: bodyHeight * 0.35, // 30% device body
                   decoration: BoxDecoration(
                       image: DecorationImage(
                     image: AssetImage('assets/images/fingerprint.png'),
@@ -97,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 // Footer
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 30),
-                  height: bodyHeight * 0.4, // 40% device body
+                  height: bodyHeight * 0.35, // 40% device body
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -106,7 +107,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         decoration: InputDecoration(
                           icon: Icon(Icons.person),
                           hintText: 'Silahkan masukkan username anda',
+                          hintStyle: TextStyle(
+                            fontSize: 28.sp,
+                          ),
                           labelText: 'Username',
+                          labelStyle: TextStyle(
+                            fontSize: 28.sp,
+                          ),
                         ),
                       ),
                       TextFormField(
@@ -115,11 +122,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         decoration: InputDecoration(
                           icon: Icon(Icons.lock),
                           hintText: 'Silahkan masukkan password anda',
+                          hintStyle: TextStyle(
+                            fontSize: 28.sp,
+                          ),
                           labelText: 'Password',
+                          labelStyle: TextStyle(
+                            fontSize: 28.sp,
+                          ),
                         ),
                       ),
                       SizedBox(
-                        height: 100,
+                        height: 100.h,
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -137,8 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               });
 
                           // response after call api
-                          Map<String, dynamic> result =
-                              jsonDecode(response.body);
+                          Map<String, dynamic> result = await jsonDecode(response.body);
 
                           if (result.containsKey('token')) {
 
@@ -170,8 +182,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Text(
                           'Login',
                           style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
+                            fontSize: 28.sp,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),

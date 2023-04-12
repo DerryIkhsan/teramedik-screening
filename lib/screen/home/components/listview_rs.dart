@@ -8,6 +8,7 @@ import '../../../bloc/rumahsakit_bloc.dart';
 import '../../../theme.dart';
 import '../../detail/detail_screen.dart';
 import 'package:teramedik/models/rumahsakit.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ListViewRS extends StatefulWidget {
   ListViewRS({
@@ -71,7 +72,7 @@ class _ListViewRSState extends State<ListViewRS> {
                   child: Stack(
                     children: [
                       Container(
-                        height: 200,
+                        height: 300.h,
                         width: double.infinity,
                         margin: EdgeInsets.symmetric(
                           horizontal: 20,
@@ -98,7 +99,7 @@ class _ListViewRSState extends State<ListViewRS> {
                         ),
                       ),
                       Container(
-                        height: 200,
+                        height: 200.h,
                         width: double.infinity,
                         margin: EdgeInsets.symmetric(
                           horizontal: 20,
@@ -128,37 +129,21 @@ class _ListViewRSState extends State<ListViewRS> {
                                 Text(
                                   '${e.rumah_sakit}',
                                   style: TextStyle(
-                                    fontSize: 26,
+                                    fontSize: 40.sp,
                                     fontWeight: FontWeight.w700,
                                     color: colorWhite,
                                   ),
                                 ),
+                                SizedBox(height: 10.h,),
                                 Text(
                                   '${e.id} - ${e.lokasi}',
                                   style: TextStyle(
-                                    fontSize: 16,
+                                    fontSize: 28.sp,
                                     fontWeight: FontWeight.bold,
                                     color: colorWhite,
                                   ),
                                 ),
                               ],
-                            ),
-                            Positioned(
-                              bottom: 20,
-                              right: 20,
-                              child: Container(
-                                width: 70,
-                                padding: EdgeInsets.all(7),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  color: colorGreen.withOpacity(.7),
-                                ),
-                                child: Icon(
-                                  Icons.arrow_forward,
-                                  size: 30,
-                                  color: colorWhite,
-                                ),
-                              ),
                             ),
                           ],
                         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:teramedik/theme.dart';
 
 import '../splash/splash_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NoConnectionScreen extends StatelessWidget {
   const NoConnectionScreen({Key? key}) : super(key: key);
@@ -46,23 +47,23 @@ class NoConnectionScreen extends StatelessWidget {
                       'Yahhh, koneksi internetmu hilang!',
                       style: TextStyle(
                         color: colorDark,
-                        fontSize: 26,
+                        fontSize: 40.sp,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                     SizedBox(
-                      height: 10,
+                      height: 20.h,
                     ),
                     Text(
                       'Periksa kembali koneksi internetmu,\n dan coba hubungkan kembali',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: colorDark.withOpacity(.7),
-                        fontSize: 16,
+                        fontSize: 28.sp,
                       ),
                     ),
                     SizedBox(
-                      height: 50,
+                      height: 100.h,
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 30),
@@ -81,8 +82,8 @@ class NoConnectionScreen extends StatelessWidget {
                         child: Text(
                           'Coba Lagi',
                           style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
+                            fontSize: 28.sp,
+                            fontWeight: FontWeight.w700,
                           ),
                         ),
                       ),

@@ -6,6 +6,7 @@ import '../../bloc/rumahsakit_bloc.dart';
 import '../../theme.dart';
 import 'components/gridview_rs.dart';
 import 'components/listview_rs.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeScreen extends StatefulWidget {
   bool closeDetailRumahSakitEvent;
@@ -70,7 +71,7 @@ class _HomeScreen extends State<HomeScreen> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 10,
+                  height: 10.h,
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(vertical: 20),
@@ -80,8 +81,8 @@ class _HomeScreen extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            height: 25,
-                            width: 25,
+                            height: 50.h,
+                            width: 50.w,
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image:
@@ -90,18 +91,19 @@ class _HomeScreen extends State<HomeScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(width: 10),
+                          SizedBox(width: 10.w),
                           Text(
                             'Teramedik',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              fontSize: 24,
+                              fontSize: 50.sp,
                               fontWeight: FontWeight.w500,
                               color: colorGreen,
                             ),
                           ),
                         ],
                       ),
+                      SizedBox(height: 100.h,),
                       Positioned(
                         right: 20,
                         child: GestureDetector(
@@ -109,12 +111,12 @@ class _HomeScreen extends State<HomeScreen> {
                               ? Icon(
                                   color: colorGreen,
                                   Icons.sort,
-                                  size: 30,
+                                  size: 50.sp,
                                 )
                               : Icon(
                                   color: colorGreen,
                                   Icons.grid_view,
-                                  size: 30,
+                                  size: 50.sp,
                                 ),
                           onTap: () {
                             isGridView = !isGridView;
@@ -126,7 +128,7 @@ class _HomeScreen extends State<HomeScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 10.h,
                 ),
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 20),
@@ -137,18 +139,18 @@ class _HomeScreen extends State<HomeScreen> {
                       Text(
                         'Hello, ${_user}',
                         style: TextStyle(
-                          fontSize: 16,
+                          fontSize: 28.sp,
                           fontWeight: FontWeight.w500,
                           color: colorDark.withOpacity(.7),
                         ),
                       ),
                       SizedBox(
-                        height: 5,
+                        height: 5.h,
                       ),
                       Text(
                         'Daftar Rumah Sakit Terbaik',
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 40.sp,
                           fontWeight: FontWeight.w700,
                           color: colorDark,
                         ),
@@ -157,7 +159,7 @@ class _HomeScreen extends State<HomeScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 10.h,
                 ),
 
                 // Bloc Build RS
@@ -193,11 +195,12 @@ class _HomeScreen extends State<HomeScreen> {
                 Container(
                   margin: EdgeInsets.only(top: 10, right: 20),
                   width: double.infinity,
-                  height: 30,
+                  height: 60.h,
                   color: colorGrey,
                   child: Text(
-                    'App Version: 1.2.1',
+                    'App Version: 1.2.3',
                     style: TextStyle(
+                      fontSize: 24.sp,
                       fontWeight: FontWeight.w500,
                       color: colorGreen,
                     ),
